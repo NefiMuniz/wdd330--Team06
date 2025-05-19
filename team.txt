@@ -1,0 +1,9 @@
+Trello:
+https://trello.com/b/i5xQdVEk/sleep-outside-team-06
+
+GitHub:
+https://github.com/NefiMuniz/wdd330--Team06
+
+Netlify:
+term3-wdd330-team06.netlify.app
+
