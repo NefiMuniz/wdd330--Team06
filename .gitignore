@@ -3,5 +3,6 @@
 .vscode
 web_modules
 node_modules
+individual
 dist
 .env
