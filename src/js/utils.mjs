@@ -1,3 +1,4 @@
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -20,4 +21,11 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+
+export function renderListWithTemplate(template, parent, list) {
+  parent.innerHTML = '';
+  list.forEach(item => {
+    parent.insertAdjacentHTML("beforeend", template(item));
+  });
 }
