@@ -2,6 +2,9 @@
 
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+let cartItemsTotal = document.querySelector(".cart-total");
+
+
 function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
@@ -36,6 +39,9 @@ function removeCartItem(e) {
   cart = cart.filter((item) => item.Id !== idToRemove);
   setLocalStorage("so-cart", cart);
   renderCartContents(); // Re-render cart
+
+  // update the total price after removal
+  getTotal();
 }
 
 // Update renderCartContents to call attachRemoveListeners
@@ -45,6 +51,15 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   attachRemoveListeners();
+
+}
+
+
+function getTotal() {
+  cartItemsTotal = getLocalStorage("so-cart") || [];
+  const total  = cartItemsTotal.reduce((sum, item) => sum + item.FinalPrice, 0);
+  document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
 }
 
 renderCartContents();
+getTotal();
