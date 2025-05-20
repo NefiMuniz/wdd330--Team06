@@ -5,29 +5,28 @@ import ProductDetails from "./ProductDetails.mjs";
 const dataSource = new ProductData("tents");
 const productId = getParam("product");
 
-const product = new ProductDetails(productId, dataSource)
+const product = new ProductDetails(productId, dataSource);
 product.init();
 
 // Add product to cart functionality
-function addProductToCart(product) {
+function addProductToCart(productData) {
   const cart = getLocalStorage("so-cart") || [];
-  cart.push(product);
+  cart.push(productData);
   setLocalStorage("so-cart", cart);
 }
 
-// Add to cart button event handler
 async function addToCartHandler(e) {
   const id = e.target.dataset.id;
   console.log("Add to Cart clicked with ID:", id);
 
-  const product = await dataSource.findProductById(id);
-  if (!product) {
+  const productData = await dataSource.findProductById(id);
+  if (!productData) {
     console.error("Product not found for ID:", id);
     return;
   }
 
-  console.log("Product found:", product);
-  addProductToCart(product);
+  console.log("Product found:", productData);
+  addProductToCart(productData);
 }
 
 // Attach event listener after DOM is loaded
