@@ -27,6 +27,8 @@ export default class ProductDetails {
 }
 
 function productDetailsTemplate(product) {
+  const discount = product.SuggestedRetailPrice - product.FinalPrice;
+  const hasDiscount = discount > 0;
   return `
   <section class="product-detail">
     <h3>${product.Brand.Name}</h3>
@@ -41,7 +43,13 @@ function productDetailsTemplate(product) {
     />
 
     <p id="productPrice" class="product-card__price">
-      ${product.FinalPrice}
+    <span class="final-price">$${product.FinalPrice.toFixed(2)}</span>
+    ${
+      hasDiscount
+        ? `<span class="original-price">$${product.SuggestedRetailPrice.toFixed(2)}</span>
+    <span class="discount-badge">Save $${discount.toFixed(2)}</span>`
+        : `$${product.FinalPrice}`
+    }
     </p>
 
     <p id="productColor" class="product__color">
