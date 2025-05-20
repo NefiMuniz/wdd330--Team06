@@ -42,6 +42,7 @@ function removeCartItem(e) {
 
   // update the total price after removal
   getTotal();
+  displayEmptyCartMessage();
 }
 
 // Update renderCartContents to call attachRemoveListeners
@@ -54,6 +55,12 @@ function renderCartContents() {
 
 }
 
+function displayEmptyCartMessage() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  if (cartItems.length === 0) {
+      document.querySelector(".cart-empty").textContent = "Your cart is empty!";
+  }
+}
 
 function getTotal() {
   cartItemsTotal = getLocalStorage("so-cart") || [];
@@ -63,3 +70,4 @@ function getTotal() {
 
 renderCartContents();
 getTotal();
+displayEmptyCartMessage();

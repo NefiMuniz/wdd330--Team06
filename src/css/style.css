@@ -191,7 +191,23 @@ button {
   font-size: 1em;
 }
 
+/* Empty Cart message*/
+.cart-empty {
+  font-size: var(--large-font);
+}
+.products .cart-empty {
+  text-align: center;
+}
 
+
+/*  Cart Total */
+
+.cart-total-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
 
 .cart-total {
   text-align: center;
