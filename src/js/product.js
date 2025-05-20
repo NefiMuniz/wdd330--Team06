@@ -1,4 +1,4 @@
-import { /* getLocalStorage, */ getParam, /* setLocalStorage */ } from "./utils.mjs";
+import { getLocalStorage, getParam, setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
@@ -8,19 +8,32 @@ const productId = getParam("product");
 const product = new ProductDetails(productId, dataSource)
 product.init();
 
-/* function addProductToCart(item) {
-  let cart = getLocalStorage("so-cart") || [];
-  cart.push(item);
+// Add product to cart functionality
+function addProductToCart(product) {
+  const cart = getLocalStorage("so-cart") || [];
+  cart.push(product);
   setLocalStorage("so-cart", cart);
-} */
+}
 
-/* // add to cart button event handler
+// Add to cart button event handler
 async function addToCartHandler(e) {
-  const item = await dataSource.findProductById(e.target.dataset.id);
-  addProductToCart(item);
-} */
+  const id = e.target.dataset.id;
+  console.log("Add to Cart clicked with ID:", id);
 
-/* // add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler); */
+  const product = await dataSource.findProductById(id);
+  if (!product) {
+    console.error("Product not found for ID:", id);
+    return;
+  }
+
+  console.log("Product found:", product);
+  addProductToCart(product);
+}
+
+// Attach event listener after DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const addBtn = document.getElementById("addToCart");
+  if (addBtn) {
+    addBtn.addEventListener("click", addToCartHandler);
+  }
+});
