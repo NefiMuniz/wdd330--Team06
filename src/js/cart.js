@@ -4,7 +4,6 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 let cartItemsTotal = document.querySelector(".cart-total");
 
-
 function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
@@ -52,20 +51,20 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   attachRemoveListeners();
-
 }
 
 function displayEmptyCartMessage() {
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length === 0) {
-      document.querySelector(".cart-empty").textContent = "Your cart is empty!";
+    document.querySelector(".cart-empty").textContent = "Your cart is empty!";
   }
 }
 
 function getTotal() {
   cartItemsTotal = getLocalStorage("so-cart") || [];
-  const total  = cartItemsTotal.reduce((sum, item) => sum + item.FinalPrice, 0);
-  document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+  const total = cartItemsTotal.reduce((sum, item) => sum + item.FinalPrice, 0);
+  document.querySelector(".cart-total").textContent =
+    `Total: $${total.toFixed(2)}`;
 }
 
 renderCartContents();
