@@ -1,5 +1,4 @@
 import { renderListWithTemplate } from "./utils.mjs";
-
 function productCardTemplate(product) {
   return `
     <li class="product-card">
@@ -10,29 +9,31 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
     </li>
-    `;
+  `;
 }
 
 export default class ProductList {
-  constructor(category, dataSource, listElement) {
-    this.category = category;
-    this.dataSource = dataSource;
-    this.listElement = listElement;
-  }
+  
+    constructor(category, dataSource, listElement) {
+        this.category = category;
+        this.dataSource = dataSource;
+        this.listElement = listElement;
+    }
 
-  async init() {
-    const list = await this.dataSource.getData();
-    this.renderList(list);
-  }
+    async init() {
+        const list = this.category
+        ? await this.dataSource.getProducts(this.category)
+        : await this.dataSource.getData():
+        this.renderList(list):
+    }
 
-  renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+    renderList(products) {
+        renderListWithTemplate(this.listElement, products, productTemplate);
+    }
+}
 
-    // apply use new utility function instead of the commented code above
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
 
-  }
+ 
 
    async filterProducts(query) {
     const list = await this.dataSource.getData();
@@ -41,5 +42,4 @@ export default class ProductList {
         );
     renderListWithTemplate(productCardTemplate, this.listElement, filteredProducts, "afterbegin", true);
     }
-
 }
