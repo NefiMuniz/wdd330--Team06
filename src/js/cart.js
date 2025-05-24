@@ -2,8 +2,6 @@
 
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-
-
 function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
@@ -45,7 +43,6 @@ function attachQuantityListeners() {
   });
 }
 
-
 // Attach listeners to all ❌ buttons
 
 function attachRemoveListeners() {
@@ -74,7 +71,7 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
 
   // Default quantity if not already set
-  cartItems.forEach(item => {
+  cartItems.forEach((item) => {
     if (!item.quantity) item.quantity = 1;
   });
 
@@ -83,7 +80,6 @@ function renderCartContents() {
   attachRemoveListeners();
   attachQuantityListeners();
 }
-
 
 function displayEmptyCartMessage() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -96,11 +92,11 @@ function getTotal() {
   const cartItems = getLocalStorage("so-cart") || [];
   const total = cartItems.reduce(
     (sum, item) => sum + item.FinalPrice * (item.quantity || 1),
-    0
+    0,
   );
-  document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+  document.querySelector(".cart-total").textContent =
+    `Total: $${total.toFixed(2)}`;
 }
-
 
 renderCartContents();
 getTotal();

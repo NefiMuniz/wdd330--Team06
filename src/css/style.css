@@ -294,20 +294,19 @@ button {
   grid-column: 3;
 }
 
-.search-container{
-    display: flex;
-    padding: 10px;
-    margin-left: 45px;
+.search-container {
+  display: flex;
+  padding: 10px;
+  margin-left: 45px;
 }
 
-#search-button{
-      margin-left: 10px;
+#search-button {
+  margin-left: 10px;
 }
-#search-input{
+#search-input {
   width: 35%;
   padding: 10px;
 }
-
 
 @media screen and (min-width: 500px) {
   body {
