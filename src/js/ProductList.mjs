@@ -2,7 +2,7 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
   return `
     <li class="product-card">
-      <a href="product_pages/?products=${product.Id}">
+      <a href="product_pages/?product=${product.Id}">
         <img src="${product.Image}" alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
@@ -21,25 +21,20 @@ export default class ProductList {
     }
 
     async init() {
-        const list = this.category
-        ? await this.dataSource.getProducts(this.category)
-        : await this.dataSource.getData():
-        this.renderList(list):
+        const list =  await this.dataSource.getData(this.category);
+        this.renderList(list);
+        document.querySelector(".title").textContent = this.category;
     }
 
-    renderList(products) {
-        renderListWithTemplate(this.listElement, products, productTemplate);
+    renderList(list) {
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
-}
 
-
- 
-
-   async filterProducts(query) {
-    const list = await this.dataSource.getData();
+    async filterProducts(query){
+        const list = await this.dataSource.getData();
         const filteredProducts = list.filter(product =>
             product.Name.toLowerCase().includes(query)
         );
-    renderListWithTemplate(productCardTemplate, this.listElement, filteredProducts, "afterbegin", true);
+        renderListWithTemplate(productCardTemplate, this.listElement, filteredProducts, "afterbegin", true);
     }
 }
