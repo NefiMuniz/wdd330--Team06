@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
 }
 
 export function renderListWithTemplate(template, parent, list) {
-  parent.innerHTML = '';
+  parent.innerHTML = "";
   list.forEach(item => {
     parent.insertAdjacentHTML("beforeend", template(item));
   });
@@ -34,8 +34,7 @@ export function renderListWithTemplate(template, parent, list) {
 export function getParam() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
-  return product
+  return urlParams.get("product");
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
