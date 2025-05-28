@@ -22,6 +22,7 @@ export default class ProductData {
   // }
   
   async getData() {
+    // console.log(baseURL)
     const response = await fetch(`${baseURL}products/search/${this.category} `);
     const data = await convertToJson(response);
     return data.Result;
@@ -31,7 +32,7 @@ export default class ProductData {
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
-    console.log(data.Result);
+    // console.log(data.Result);
     return data.Result;
   }
 }
