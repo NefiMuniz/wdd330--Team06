@@ -8,6 +8,7 @@ export default class ProductDetails {
   }
 
   async init() {
+
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails();
     document
@@ -37,7 +38,7 @@ function productDetailsTemplate(product) {
 
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryMedium}"
       id="productImage"
       alt="${product.Name}"
     />
