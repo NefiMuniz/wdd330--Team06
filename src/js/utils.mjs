@@ -31,10 +31,10 @@ export function renderListWithTemplate(template, parent, list) {
   });
 }
 
-export function getParam() {
+export function getParam(filter) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get("product");
+  return urlParams.get(filter ?? "product");
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {

@@ -38,7 +38,7 @@ function productDetailsTemplate(product) {
 
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryMedium}"
       id="productImage"
       alt="${product.Name}"
     />
