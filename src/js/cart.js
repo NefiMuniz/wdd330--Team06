@@ -1,8 +1,6 @@
-//
+import { cartCounter, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-
-let cartItemsTotal = document.querySelector(".cart-total");
+let totalContainer = document.querySelector(".cart-total-container");
 
 function cartItemTemplate(item) {
   return `
@@ -66,6 +64,7 @@ function removeCartItem(e) {
   // update the total price after removal
   getTotal();
   displayEmptyCartMessage();
+  cartCounter();
 }
 
 // Update renderCartContents to call attachRemoveListeners
@@ -87,6 +86,7 @@ function displayEmptyCartMessage() {
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length === 0) {
     document.querySelector(".cart-empty").textContent = "Your cart is empty!";
+    totalContainer.style.display = "none";
   }
 }
 
