@@ -1,38 +1,11 @@
-import { getLocalStorage, getParam, setLocalStorage } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import { getParam, loadHeaderFooter } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
-const dataSource = new ProductData("tents");
-const productId = getParam("product");
+loadHeaderFooter();
 
-const product = new ProductDetails(productId, dataSource);
+const dataSource = new ExternalServices("tents");
+const productID = getParam("product");
+
+const product = new ProductDetails(productID, dataSource);
 product.init();
-
-// Add product to cart functionality
-function addProductToCart(productData) {
-  const cart = getLocalStorage("so-cart") || [];
-  cart.push(productData);
-  setLocalStorage("so-cart", cart);
-}
-
-async function addToCartHandler(e) {
-  const id = e.target.dataset.id;
-  console.log("Add to Cart clicked with ID:", id);
-
-  const productData = await dataSource.findProductById(id);
-  if (!productData) {
-    console.error("Product not found for ID:", id);
-    return;
-  }
-
-  console.log("Product found:", productData);
-  addProductToCart(productData);
-}
-
-// Attach event listener after DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const addBtn = document.getElementById("addToCart");
-  if (addBtn) {
-    addBtn.addEventListener("click", addToCartHandler);
-  }
-});
