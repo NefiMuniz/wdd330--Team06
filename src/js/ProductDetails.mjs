@@ -44,11 +44,10 @@ function productDetailsTemplate(product) {
 
     <p id="productPrice" class="product-card__price">
     <span class="final-price">$${product.FinalPrice.toFixed(2)}</span>
-    ${
-      hasDiscount
-        ? `<span class="original-price">$${product.SuggestedRetailPrice.toFixed(2)}</span>
+    ${hasDiscount
+      ? `<span class="original-price">$${product.SuggestedRetailPrice.toFixed(2)}</span>
     <span class="discount-badge">Save $${discount.toFixed(2)}</span>`
-        : `$${product.FinalPrice}`
+      : `$${product.FinalPrice}`
     }
     </p>
 
