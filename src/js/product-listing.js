@@ -1,7 +1,9 @@
 import { loadHeaderFooter, getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import loadAlerts from "./alerts.js";
 
+loadAlerts();
 loadHeaderFooter();
 
 const category = getParam("category");
