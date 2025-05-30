@@ -290,6 +290,7 @@ button {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .cart-total {
