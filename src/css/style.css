@@ -403,6 +403,23 @@ button {
   padding: 10px;
 }
 
+fieldset{
+  padding: 5px;
+
+  div{
+    padding: 5px;
+  }
+}
+
+form{
+  padding: 10px;
+}
+
+.order__summary{
+  display: grid;
+    grid-template-columns: 10% 50%;
+}
+
 @media screen and (min-width: 680px) {
   body {
     max-width: 1080px;
