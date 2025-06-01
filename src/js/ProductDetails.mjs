@@ -33,6 +33,13 @@ export default class ProductDetails {
     },3000);
     // Update the cart Counter
     cartCounter(cartItems.length);
+
+    // Blink the cart icon
+    const cartIcon = document.querySelector(".cart");
+    cartIcon.classList.add("blink");
+    setTimeout(() => {
+      cartIcon.classList.remove("blink");
+    }, 1800);
   }
 
   renderProductDetails() {
