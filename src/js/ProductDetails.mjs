@@ -50,11 +50,12 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
 
     <img
-      class="divider"
       src="${product.Images.PrimaryMedium}"
       id="productImage"
       alt="${product.Name}"
     />
+
+    <div class="divider"></div>
 
     <p id="productPrice" class="product-card__price">
     <span class="final-price">$${product.FinalPrice.toFixed(2)}</span>

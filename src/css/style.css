@@ -313,7 +313,10 @@ button {
 }
 
 .product-detail img {
-  width: 100%;
+  /*Align center*/
+  margin: auto;
+  display: block;
+  width: 60%;
 }
 
 .product-card__price {
@@ -363,6 +366,9 @@ button {
   max-width: 100%;
   height: auto;
   object-fit: contain; /* Ensures images fit nicely */
+  /*Centralizing image*/
+  margin: auto;
+  display: block;
 }
 
 .cart-card p {
