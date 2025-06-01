@@ -15,6 +15,6 @@ export default async function loadAlerts(){
             container.appendChild(div);
         });
     } catch (error) {
-        console.error("Error loading alerts:", err);
+        console.error("Error loading alerts:", error);
     }
 }
