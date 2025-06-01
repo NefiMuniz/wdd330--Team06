@@ -1,4 +1,4 @@
-   {
+{
   "plugins": ["import"],
   "extends": ["eslint:recommended", "plugin:import/errors", "prettier"],
   "env": {

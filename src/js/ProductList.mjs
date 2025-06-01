@@ -20,28 +20,28 @@ function productCardTemplate(product) {
 
 
 export default class ProductList {
-  
-    constructor(category, dataSource, listElement) {
-        this.category = category;
-        this.dataSource = dataSource;
-        this.listElement = listElement;
-    }
 
-    async init() {
-        const list =  await this.dataSource.getData();
-        this.renderList(list);
-        document.querySelector(".title").textContent = this.category;
-    }
+  constructor(category, dataSource, listElement) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+  }
 
-    renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
-    }
+  async init() {
+    const list = await this.dataSource.getData(this.category);
+    this.renderList(list);
+    document.querySelector(".title").textContent = this.category;
+  }
 
-    async filterProducts(query){
-        const list = await this.dataSource.getData();
-        const filteredProducts = list.filter(product =>
-            product.Name.toLowerCase().includes(query)
-        );
-        renderListWithTemplate(productCardTemplate, this.listElement, filteredProducts, "afterbegin", true);
-    }
+  renderList(list) {
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
+  }
+
+  async filterProducts(query) {
+    const list = await this.dataSource.getData();
+    const filteredProducts = list.filter(product =>
+      product.Name.toLowerCase().includes(query)
+    );
+    renderListWithTemplate(productCardTemplate, this.listElement, filteredProducts, "afterbegin", true);
+  }
 }

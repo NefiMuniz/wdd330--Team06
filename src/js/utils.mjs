@@ -47,7 +47,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 // Function to count the number of items in the cart
 export function cartCounter() {
   const counter = document.getElementById("cart-total-counter");
-  if(!counter) {
+  if (!counter) {
     console.warn("cart-total-counter element not found in the DOM");
     return;
   }
@@ -87,8 +87,33 @@ function headerSetup() {
   // Example: highlight current nav link, or add dropdown behavior
 }
 
-// // Updates the counter while loading the page
-// document.addEventListener("DOMContentLoaded", cartCounter);
-//
-// // Identifies any changes in `LocalStorage` from any window
-// window.addEventListener("storage", cartCounter);
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  const main = document.querySelector("main");
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+
+  main.prepend(alert);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if (scroll) window.scrollTo(0, 0);
+
+  // left this here to show how you could remove the alert automatically after a certain amount of time.
+  // setTimeout(function () {
+  //   main.removeChild(alert);
+  // }, duration);
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
+
