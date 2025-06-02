@@ -616,3 +616,28 @@ footer {
   padding: 1em;
   text-align: center;
 }
+
+/*Comments style*/
+
+.comments-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+.comments-list {
+  list-style-type: disc;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+#commentForm textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#commentForm button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+}
